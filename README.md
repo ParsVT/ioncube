@@ -1,5 +1,5 @@
 # ParsVT ionCube Installer/Updater
-ionCube loader installation script.
+ParsVT ionCube loader installation script.
 
 Shell script to install/update ionCube loader on CentOS Linux.
 
