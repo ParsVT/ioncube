@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1402-11-14
+# Update: 1402-11-18
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -12,7 +12,6 @@ Yellow="\e[0;33m"
 Blue="\e[0;34m"
 Purple="\e[0;35m"
 Cyan="\e[0;36m"
-primarySite="aweb.co"
 output() {
 	echo -e "$1"
 }
@@ -147,7 +146,7 @@ else
 				cd /root
 				output "Current PHP version: ${Green}${PHP_VERSION}${Color_Off}\n"
 				output "Checking the ionCube loader version..."
-				wget -q http://$primarySite/modules/addons/easyservice/Installer/IC.txt -O /root/IC.php
+				wget -q http://raw.githubusercontent.com/ParsVT/linux-installer/main/assets/ic.txt -O /root/IC.php
 				IONCUBE_VER=$(php -f /root/IC.php)
 				IONCUBE_VERSION=$(php -r "error_reporting(0); echo ioncube_loader_version();")
 				rm -rf /root/IC.php*
