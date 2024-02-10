@@ -49,7 +49,7 @@ installioncube() {
 	cp "ioncube/ioncube_loader_lin_${PHP_VERSION}.so" $PHP_EXT_DIR
 	echo "zend_extension = ${PHP_EXT_DIR}/ioncube_loader_lin_${PHP_VERSION}.so" >"${PHP_CONFD}/00-ioncube.ini"
 	rm -rf ./ioncube
-	rm ioncube_loaders_lin_x86-64.tar.gz
+	rm -rf ioncube_loaders_lin*.tar.gz*
 	cd /root
 	if [ "$major" = "7" ] || [ "$major" = "8" ] || [ "$major" = "9" ]; then
 		systemctl restart httpd
