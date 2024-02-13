@@ -60,10 +60,10 @@ installioncube() {
 		service httpd restart
 	fi
 }
-echo -e "${Yellow} ___            __   _______               "
-echo -e "| _ \__ _ _ _ __\ \ / /_   _|__ ___ _ __   "
+echo -e "${Yellow} ___            __   _______              "
+echo -e "| _ \__ _ _ _ __\ \ / /_   _|__ ___ _ __  "
 echo -e "|  _/ _\` | '_(_-<\ V /  | |_/ _/ _ \ '  \ "
-echo -e "|_| \__,_|_| /__/ \_/   |_(_)__\___/_|_|_| \n"
+echo -e "|_| \__,_|_| /__/ \_/   |_(_)__\___/_|_|_|\n"
 echo -e "Shell script to install/update ionCube loader on CentOS Linux."
 echo -e "Please run as root. if you are not, enter 'n' now and enter 'sudo su' before running the script."
 echo -e "Run the script? (y/n): ${Color_Off}"
