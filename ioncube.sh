@@ -118,7 +118,7 @@ else
 		fi
 		output "\n${Cyan}Installing required packages...${Color_Off}"
 		if [ "$major" = "7" ] || [ "$major" = "8" ] || [ "$major" = "9" ]; then
-			dnf install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
+			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
 		else
 			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
 		fi
