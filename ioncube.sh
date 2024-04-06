@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1402-11-18
+# Update: 1403-01-18
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -34,9 +34,9 @@ installIonCube() {
 	cd /tmp
 	rm -rf ioncube_loaders_lin*.tar.gz*
 	if [ "$OS" = "x86_64" ]; then
-		wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
+		wget http://aweb.co/modules/addons/easyservice/Installer/ioncube_loaders_lin_x86-64.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
 	else
-		wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
+		wget http://aweb.co/modules/addons/easyservice/Installer/ioncube_loaders_lin_x86.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
 	fi
 	tar xfz ioncube_loaders_lin_x86-64.tar.gz
 	PHP_CONFD="/etc/php.d"
@@ -146,7 +146,7 @@ else
 				cd /root
 				output "Current PHP version: ${Green}${PHP_VERSION}${Color_Off}\n"
 				output "Checking the ionCube loader version..."
-				wget -q http://raw.githubusercontent.com/ParsVT/linux-installer/main/assets/ic.txt -O /root/IC.php
+				wget -q http://aweb.co/modules/addons/easyservice/Installer/ic.txt -O /root/IC.php
 				set +e
 				IONCUBE_VER=$(php -f /root/IC.php)
 				IONCUBE_VERSION=$(php -r "error_reporting(0); echo ioncube_loader_version();")
