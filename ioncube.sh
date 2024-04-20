@@ -60,7 +60,7 @@ installIonCube() {
 		service httpd restart
 	fi
 }
-echo -e "${Yellow} ___            __   _______              "
+echo -e "\n${Yellow} ___            __   _______              "
 echo -e "| _ \__ _ _ _ __\ \ / /_   _|__ ___ _ __  "
 echo -e "|  _/ _\` | '_(_-<\ V /  | |_/ _/ _ \ '  \ "
 echo -e "|_| \__,_|_| /__/ \_/   |_(_)__\___/_|_|_|\n"
