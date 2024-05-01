@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1403-01-18
+# Update: 1403-02-12
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -17,7 +17,7 @@ output() {
 }
 checkInternetConnection() {
 	TIMESTAMP=$(date +%s)
-	ping -c 1 -W 0.7 8.8.8.8 >/dev/null 2>&1
+	ping -c 1 -W 1 8.8.8.8 >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
 		echo -e "\n${Green}Internet connection is UP $(date +%Y-%m-%d_%H:%M:%S_%Z) $(($(date +%s) - $TIMESTAMP))${Color_Off}"
 		INTERNET_STATUS="UP"
