@@ -116,6 +116,7 @@ else
 				output "Arch: ${Yellow}32-bit${Color_Off}"
 			fi
 		fi
+		set +e
 		output "\n${Cyan}Installing required packages...${Color_Off}"
 		if [ "$major" = "7" ] || [ "$major" = "8" ] || [ "$major" = "9" ]; then
 			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
@@ -123,6 +124,7 @@ else
 			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
 		fi
 		output "${Green}required packages successfully installed!${Color_Off}\n"
+		set -e
 		wgetfile="/usr/bin/wget"
 		curlfile="/usr/bin/curl"
 		if [ ! -f "$wgetfile" ] || [ ! -f "$curlfile" ]; then
