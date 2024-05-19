@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1403-02-12
+# Update: 1403-02-30
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -119,9 +119,9 @@ else
 		set +e
 		output "\n${Cyan}Installing required packages...${Color_Off}"
 		if [ "$major" = "7" ] || [ "$major" = "8" ] || [ "$major" = "9" ]; then
-			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
+			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs tzdata -y
 		else
-			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs -y
+			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs tzdata -y
 		fi
 		output "${Green}required packages successfully installed!${Color_Off}\n"
 		set -e
