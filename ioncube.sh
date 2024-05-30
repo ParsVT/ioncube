@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1403-02-30
+# Update: 1403-03-10
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -24,7 +24,7 @@ checkInternetConnection() {
 	else
 		echo -e "\n${Red}Internet connection is DOWN $(date +%Y-%m-%d_%H:%M:%S_%Z) $(($(date +%s) - $TIMESTAMP))${Color_Off}"
 		INTERNET_STATUS="DOWN"
-		output "${Red}Please check the server's internet connection and DNS settings and run the installer again.${Color_Off}"
+		output "Please check the server's internet connection and DNS settings and run the installer again."
 		output "\n${Red}The operation aborted!${Color_Off}"
 		output "${Yellow}www.parsvt.com${Color_Off}\n"
 		exit
@@ -33,7 +33,7 @@ checkInternetConnection() {
 installIonCube() {
 	cd /tmp
 	rm -rf ioncube_loaders_lin*.tar.gz*
-	if [ "$OS" = "x86_64" ]; then
+	if [ "$ARCH" = "x86_64" ]; then
 		wget http://aweb.co/modules/addons/easyservice/Installer/ioncube_loaders_lin_x86-64.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
 	else
 		wget http://aweb.co/modules/addons/easyservice/Installer/ioncube_loaders_lin_x86.tar.gz -O ioncube_loaders_lin_x86-64.tar.gz
@@ -74,68 +74,36 @@ if [ "$run" == n ]; then
 	exit
 else
 	checkInternetConnection
-	output "\n${Cyan}Checking operating system...${Color_Off}"
-	if [ ! -f "/etc/centos-release" ] && [ ! -f "/etc/redhat-release" ]; then
-		output "\n${Red}The operating system is not supported!${Color_Off}"
-		output "${Red}The ionCube loader installer only installs on CentOS and RHEL-based Linuxes.${Color_Off}"
-		output "${Red}You have to install/update ionCube loader manually.${Color_Off}"
+	if [ ! -f "/etc/redhat-release" ]; then
+		output "\n${Red}Operating system is not supported!${Color_Off}"
+		output "ionCube loader installer only installs on CentOS and RHEL-based Linuxes."
+		output "You have to install/update ionCube loader manually."
 		output "\n${Red}The operation aborted!${Color_Off}"
 		output "${Yellow}www.parsvt.com${Color_Off}\n"
 		exit
 	else
-		if [ -f "/etc/centos-release" ]; then
-			fullname=$(cat /etc/centos-release)
-			full=$(cat /etc/centos-release | tr -dc '0-9.')
-			major=$(cat /etc/centos-release | tr -dc '0-9.' | cut -d \. -f1)
-			minor=$(cat /etc/centos-release | tr -dc '0-9.' | cut -d \. -f2)
-			OS=$(uname -m | grep '64')
-			output "${Green}Done!${Color_Off}\n"
-			output "Operating system information:"
-			output "CentOS version: ${Yellow}${full}${Color_Off}"
-			output "Major release: ${Yellow}${major}${Color_Off}"
-			output "Minor release: ${Yellow}${minor}${Color_Off}"
-			if [ "$OS" = "x86_64" ]; then
-				output "Arch: ${Yellow}64-bit${Color_Off}"
-			else
-				output "Arch: ${Yellow}32-bit${Color_Off}"
-			fi
-		else
+		if [ -f "/etc/redhat-release" ]; then
 			fullname=$(cat /etc/redhat-release)
-			full=$(cat /etc/redhat-release | tr -dc '0-9.')
 			major=$(cat /etc/redhat-release | tr -dc '0-9.' | cut -d \. -f1)
-			minor=$(cat /etc/redhat-release | tr -dc '0-9.' | cut -d \. -f2)
-			OS=$(uname -m | grep '64')
-			output "${Green}Done!${Color_Off}\n"
-			output "Operating system information:"
-			output "RedHat version: ${Yellow}${full}${Color_Off}"
-			output "Major release: ${Yellow}${major}${Color_Off}"
-			output "Minor release: ${Yellow}${minor}${Color_Off}"
-			if [ "$OS" = "x86_64" ]; then
-				output "Arch: ${Yellow}64-bit${Color_Off}"
-			else
-				output "Arch: ${Yellow}32-bit${Color_Off}"
-			fi
+			ARCH=$(uname -m)
+			output "\n${Green}${fullname} ${ARCH}${Color_Off}"
 		fi
 		set +e
 		output "\n${Cyan}Installing required packages...${Color_Off}"
-		if [ "$major" = "7" ] || [ "$major" = "8" ] || [ "$major" = "9" ]; then
-			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs tzdata -y
-		else
-			yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs tzdata -y
-		fi
+		yum install wget curl expect psmisc net-tools yum-utils zip unzip tar crontabs tzdata -y
 		output "${Green}required packages successfully installed!${Color_Off}\n"
 		set -e
 		wgetfile="/usr/bin/wget"
 		curlfile="/usr/bin/curl"
 		if [ ! -f "$wgetfile" ] || [ ! -f "$curlfile" ]; then
-			output "\n${Red}required packages failed to install!${Color_Off}"
-			output "${Red}Please check the server's internet connection and DNS settings and run the installer again.${Color_Off}"
+			output "${Red}required packages failed to install!${Color_Off}"
+			output "Please check the server's internet connection and DNS settings and run the installer again."
 			output "\n${Red}The operation aborted!${Color_Off}"
 			output "${Yellow}www.parsvt.com${Color_Off}\n"
 			exit
 		fi
 		if ! command -v "php" &>/dev/null; then
-			output "PHP is not installed!"
+			output "${Red}PHP is not installed!${Color_Off}"
 			output "\n${Red}The operation aborted!${Color_Off}"
 			output "${Yellow}www.parsvt.com${Color_Off}\n"
 			exit
