@@ -2,7 +2,7 @@
 # #########################################
 # Program: ionCube Loader Installation Script
 # Developer: Hamid Rabiei, Mohammad Hadadpour
-# Update: 1403-03-10
+# Update: 1403-04-09
 # #########################################
 set -e
 Color_Off="\e[0m"
@@ -19,10 +19,10 @@ checkInternetConnection() {
 	TIMESTAMP=$(date +%s)
 	ping -c 1 -W 1 8.8.8.8 >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
-		echo -e "\n${Green}Internet connection is UP $(date +%Y-%m-%d_%H:%M:%S_%Z) $(($(date +%s) - $TIMESTAMP))${Color_Off}"
+		echo -e "\n${Green}Internet connection is UP - $(date +%Y-%m-%d_%H:%M:%S_%Z) - $(($(date +%s) - $TIMESTAMP))${Color_Off}"
 		INTERNET_STATUS="UP"
 	else
-		echo -e "\n${Red}Internet connection is DOWN $(date +%Y-%m-%d_%H:%M:%S_%Z) $(($(date +%s) - $TIMESTAMP))${Color_Off}"
+		echo -e "\n${Red}Internet connection is DOWN - $(date +%Y-%m-%d_%H:%M:%S_%Z) - $(($(date +%s) - $TIMESTAMP))${Color_Off}"
 		INTERNET_STATUS="DOWN"
 		output "Please check the server's internet connection and DNS settings and run the installer again."
 		output "\n${Red}The operation aborted!${Color_Off}"
